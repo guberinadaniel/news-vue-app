@@ -71,17 +71,29 @@ export default {
       .menu-level1 {
         list-style-type: none;
         padding: 0;
+        margin: 0;
         .menu-item1 {
           color: #fff;
-          line-height: 40px;
           display: inline-block;
           font-size: 13px;
           font-weight: 700;
           text-transform: uppercase;
           margin: 0;
+          &:hover{
+            background-color: #007fef;
+            outline: 0;
+          }
           a {
             text-decoration: none;
+            display: inline-block;
+            color: #fff;
             padding: 0 13px;
+            line-height: 60px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            position: relative;
             &:visited {
               color: white;
             }
