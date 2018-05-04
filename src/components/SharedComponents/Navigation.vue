@@ -54,12 +54,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
-  .container{
-    max-width: 1170px;
-    width: 100%;
-    margin: 0 auto;
-  }
+<style lang="scss" scoped>
   .navigation {
     background-color: #272727;
     border-bottom: 4px solid #007fef ;
