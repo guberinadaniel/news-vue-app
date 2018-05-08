@@ -5,19 +5,19 @@
         <li class="menu-item1">
           <router-link :to="{ name: 'Homepage'}">Home</router-link>
         </li>
-        <li class="menu-item1"
-            @mouseover="mouseActive"
-            v-bind:class="{ 'on': active, 'off': !active}">
+        <li class="menu-item1 dropdown"
+            v-on="{ mouseover: mouseActive, mouseout: mouseActive}"
+            v-bind:class="{ 'on': active, 'off': !active}" >
           <router-link :to="{ name: 'lifestyle'}">Lifestyle</router-link>
-          <ul class="menu-level2">
-            <li class="menu-sub-item1">
-              <router-link :to="{ name: 'lifestyle'}">Hello1</router-link>
+          <ul class="menu-level2" v-if="mouseActive.self= true">
+            <li class="sub-item menu-sub-item1">
+              <router-link :to="{ name: 'Health'}">Health</router-link>
             </li>
-            <li class="menu-sub-item2">
-              <router-link :to="{ name: 'lifestyle'}">Hello2</router-link>
+            <li class="sub-item menu-sub-item2">
+              <router-link :to="{ name: 'lifestyle'}">Travel</router-link>
             </li>
-            <li class="menu-sub-item3">
-              <router-link :to="{ name: 'lifestyle'}">Hello3</router-link>
+            <li class="sub-item menu-sub-item3">
+              <router-link :to="{ name: 'lifestyle'}">Food</router-link>
             </li>
           </ul>
         </li>
@@ -68,7 +68,7 @@ export default {
     mouseActive: function () {
       this.active = !this.active;
     }
-  }
+  },
 }
 </script>
 
@@ -77,15 +77,32 @@ export default {
   .navigation {
     position: relative;
     .menu-item1 {
+      &.dropdown{
+        &::after{
+          font-family: "FontAwesome";
+          content: " \f107";
+          color: #fff;
+          margin-left: -12px;
+        }
+      }
       &.on {
         .menu-level2{
-          display: block;
+          z-index: 10;
           position: absolute;
-          top: 63px;
+          border-top: 3px solid #007fef;
+          list-style-type: none;
+          display: block;
+          top: 60px;
           left: 0;
+          right: 0;
           background-color: #272727;
-          max-width: 100%;
-          width: 100%;
+          .sub-item{
+            a {
+              &:hover{
+                color: #007fef;
+            }
+            }
+          }
         }
       }
       &.off {

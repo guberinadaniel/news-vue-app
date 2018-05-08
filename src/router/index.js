@@ -12,7 +12,7 @@ import Video from '@/components/Pages/Video/Video'
 
 import News from '@/components/Pages/News'
 import NewsSinglePage from '@/components/Pages/NewsSinglePage'
-
+import Health from '@/components/Pages/Health/Health'
 
 Vue.use(Router);
 Vue.use(Vue2Crumbs);
@@ -44,8 +44,19 @@ export default new Router({
       component: Lifestyles,
       meta: {
         breadcrumb: {
-          label: 'Lifestyles',
+          label: 'Lifestyle',
           parent: 'Homepage'
+        }
+      },
+    },
+    {
+      path: '/lifestyles/health',
+      name: 'Health',
+      component: Health,
+      meta: {
+        breadcrumb: {
+          label: 'Health',
+          parent: 'lifestyle'
         }
       },
     },
@@ -95,7 +106,6 @@ export default new Router({
     },
     {
       path: '/news/:id',
-      // fullPath: "", videti kako da se doda alias
       name: 'singleNews',
       component: NewsSinglePage,
       meta: {

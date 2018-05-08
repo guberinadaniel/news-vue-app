@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <app-Date></app-Date>
     <app-head-logo></app-head-logo>
     <app-nav></app-nav>
     <app-breadcrumbs class="container"></app-breadcrumbs>
@@ -10,7 +11,7 @@
 </template>
 
 <script>
-
+  import DateLogin from './components/SharedComponents/DateLoginSection';
   import Navigation from './components/SharedComponents/Navigation';
   import HeaderLogo from './components/SharedComponents/HeaderLogo';
   import FooterTop from './components/SharedComponents/FooterTop';
@@ -19,6 +20,7 @@
 export default  {         //name: 'App'
   name: 'App',
   components: {
+    appDate: DateLogin,
     appNav: Navigation,
     appHeadLogo: HeaderLogo,
     appFooterTop: FooterTop,
@@ -47,16 +49,22 @@ body{
 .layout-content{
   width: calc((100% / 3)*2);
   display: inline-block;
-  margin-left: -4px;
   img{
     max-width: 100%;
     width: 100%;
   }
 }
 .layout-sidebar{
+  margin-left: -4px;
   width: calc(100% / 3);
   display: inline-block;
   vertical-align: top;
+}
+.sidebar{
+  padding-left: 25px;
+}
+.single-news{
+  padding-right: 25px;
 }
 .breadcrumbs-container{
   padding: 20px 0 0 0;

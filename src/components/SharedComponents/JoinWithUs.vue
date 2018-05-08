@@ -101,7 +101,7 @@
     height: 100%;
     color: white;
     .field-item-settings{
-      padding: 15px;
+      padding: 12px;
       a{
         text-decoration: none;
         color: white;

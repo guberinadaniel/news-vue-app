@@ -66,12 +66,6 @@
 </script>
 
 <style lang="scss">
-  .single-news{
-    padding-right: 25px;
-  }
-  .sidebar{
-    padding-left: 25px;
-  }
   .posted-by{
     margin-bottom: 15px;
     font-size: 12px;
