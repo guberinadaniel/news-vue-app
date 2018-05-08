@@ -5,8 +5,21 @@
         <li class="menu-item1">
           <router-link :to="{ name: 'Homepage'}">Home</router-link>
         </li>
-        <li class="menu-item1">
+        <li class="menu-item1"
+            @mouseover="mouseActive"
+            v-bind:class="{ 'on': active, 'off': !active}">
           <router-link :to="{ name: 'lifestyle'}">Lifestyle</router-link>
+          <ul class="menu-level2">
+            <li class="menu-sub-item1">
+              <router-link :to="{ name: 'lifestyle'}">Hello1</router-link>
+            </li>
+            <li class="menu-sub-item2">
+              <router-link :to="{ name: 'lifestyle'}">Hello2</router-link>
+            </li>
+            <li class="menu-sub-item3">
+              <router-link :to="{ name: 'lifestyle'}">Hello3</router-link>
+            </li>
+          </ul>
         </li>
         <li class="menu-item1">
           <router-link :to="{ name: 'technology'}">Technology</router-link>
@@ -41,6 +54,7 @@ export default {
     return {
       available: false,
       search: '',
+      active: false,
     }
   },
   computed: {
@@ -49,12 +63,38 @@ export default {
         available: this.available
       }
     }
+  },
+  methods: {
+    mouseActive: function () {
+      this.active = !this.active;
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+  .navigation {
+    position: relative;
+    .menu-item1 {
+      &.on {
+        .menu-level2{
+          display: block;
+          position: absolute;
+          top: 63px;
+          left: 0;
+          background-color: #272727;
+          max-width: 100%;
+          width: 100%;
+        }
+      }
+      &.off {
+        .menu-level2{
+          display: none;
+        }
+      }
+    }
+  }
   .navigation {
     background-color: #272727;
     border-bottom: 4px solid #007fef ;

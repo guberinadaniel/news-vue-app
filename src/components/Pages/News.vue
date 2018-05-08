@@ -1,19 +1,23 @@
 <template>
-  <div class="container">
-    <div class="layout-content">
-      <div class="wraper-news-pages" v-for="singleNews in news">
-        <router-link :to="{ name: 'singleNews', params: { id: singleNews.nid[0].value }}"><h1>{{ singleNews.title[0].value }}</h1></router-link>
-        <div class="posted-by">{{ singleNews.uid[0].url}} <span class="crated-on">{{ singleNews.created[0].value | toTime }}</span></div>
-        <img :src=singleNews.field_news_ct_image[0].url :alt=singleNews.field_news_ct_image[0].alt>
-        <p v-html="singleNews.body[0].value"></p>
-        <div class="tags-rating">
-          <div class="tags"></div>
-          <div class="rating"></div>
+  <div v-if="!loading">
+    <div class="container">
+      <div v-cloak class="layout-content">
+        <div class="wraper-news-pages" v-for="singleNews in news">
+          <router-link :to="{ name: 'singleNews', params: { id: singleNews.nid[0].value }}"><h1>{{ singleNews.title[0].value }}</h1></router-link>
+          <div class="posted-by">{{ singleNews.uid[0].url}} <span class="crated-on">{{ singleNews.created[0].value | toTime }}</span></div>
+          <img :src=singleNews.field_news_ct_image[0].url :alt=singleNews.field_news_ct_image[0].alt>
+          <p v-html="singleNews.body[0].value"></p>
+          <div class="tags-rating">
+            <div class="tags"></div>
+            <div class="rating"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="layout-sidebar">
-
+      <div v-cloak class="layout-sidebar">
+        <div class="sidebar">
+          <app-join-us></app-join-us>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -22,10 +26,15 @@
   import axios from 'axios'
   import moment from 'moment'
 
+  import JoinWithUs from '../../components/SharedComponents/JoinWithUs'
 
   export default {
+    components: {
+      appJoinUs: JoinWithUs,
+    },
     data() {
       return {
+        loading: true,
         news: [],
         endpoint: 'http://vuenews.dev.loc/api/news/?_format=json',
         date: null
@@ -42,6 +51,7 @@
         axios.get(this.endpoint)
           .then(res => {
             this.news = res.data;
+            this.loading = false;
             console.log(res);
           });
       }
