@@ -16,7 +16,8 @@
     "vue-2-breadcrumbs": "^0.3.0",
     "vue-2-crumbs": "^0.5.2",
     "vue-breadcrumbs": "^1.1.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-star-rating": "^1.6.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
