@@ -10,8 +10,18 @@
             v-bind:class="{ 'on': active, 'off': !active}" >
           <router-link :to="{ name: 'lifestyle'}">Lifestyle</router-link>
           <ul class="menu-level2" v-if="mouseActive.self= true">
-            <li class="sub-item menu-sub-item1">
+            <li class="sub-item menu-sub-item1"
+                v-on="{ mouseover: mouseActive2, mouseout: mouseActive2}"
+                v-bind:class="{ 'on2': active2, 'off2': !active2}">
               <router-link :to="{ name: 'Health'}">Health</router-link>
+              <div class="images-menu-absolute">
+                <div class="images-menu" v-for="singleNews in news">
+                  <router-link class="health-router" :to="{ name: 'singleNews', params: { id: singleNews.nid[0].value }}">
+                    <img :src=singleNews.field_news_ct_image[0].url :alt=singleNews.field_news_ct_image[0].alt>
+                    <h3>{{ singleNews.title[0].value }}</h3>
+                    </router-link>
+                </div>
+              </div>
             </li>
             <li class="sub-item menu-sub-item2">
               <router-link :to="{ name: 'lifestyle'}">Travel</router-link>
@@ -19,6 +29,7 @@
             <li class="sub-item menu-sub-item3">
               <router-link :to="{ name: 'lifestyle'}">Food</router-link>
             </li>
+
           </ul>
         </li>
         <li class="menu-item1">
@@ -48,14 +59,22 @@
 
 
 <script>
+  import axios from 'axios'
+
 export default {
   name: 'navigation',
   data: function () {
     return {
+      endpointHealth: 'http://vuenews.dev.loc/api/news/health/?_format=json',
       available: false,
       search: '',
       active: false,
+      active2: false,
+      news:[]
     }
+  },
+  created() {
+    this.getNews();
   },
   computed: {
     changeStatus: function () {
@@ -67,16 +86,76 @@ export default {
   methods: {
     mouseActive: function () {
       this.active = !this.active;
+    },
+    mouseActive2: function () {
+      this.active2 = !this.active2;
+    },
+    getNews() {
+      axios.get(this.endpointHealth)
+        .then(res => {
+          this.news = res.data;
+        });
     }
   },
+  filters: {
+    capitalize: function (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.charAt(0).toLowerCase() + value.slice(1)
+    }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+  .on2{
+    position: relative;
+    z-index: 100;
+    .images-menu-absolute{
+      position: absolute;
+      z-index: 1000;
+      top: 20px;
+      right: 10px;
+      .images-menu{
+        display: inline-block;
+        margin-right: 0;
+        vertical-align: top;
+        .health-router{
+          padding: 0 ;
+          max-width: 200px;
+          margin: 0;
+          &:hover{
+            opacity: 0.6;
+            transition: 0.4s;
+            cursor: pointer;
+          }
+          img{
+            display: block;
+            max-height: 115px;
+            padding: 0;
+            width: 100%;
+          }
+          h3{
+            display: block;
+            line-height: 24px;
+            text-transform: capitalize;
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .off2{
+    .images-menu{
+      display: none;
+    }
+  }
   .navigation {
     position: relative;
-    .menu-item1 {
+    .menu-item1{
       &.dropdown{
         &::after{
           font-family: "FontAwesome";
@@ -96,6 +175,7 @@ export default {
           left: 0;
           right: 0;
           background-color: #272727;
+          height: 220px;
           .sub-item{
             a {
               &:hover{
@@ -134,6 +214,7 @@ export default {
           &:hover{
             background-color: #007fef;
             outline: 0;
+            transition: 0.4s;
           }
           a {
             text-decoration: none;

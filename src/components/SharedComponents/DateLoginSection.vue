@@ -1,8 +1,12 @@
 <template>
   <div class="container">
     <div class="curent-date">{{ new Date() | toTime }}</div>
-    <div class="login"></div>
-    <div class="link-icons"></div>
+    <div class="login">
+
+    </div>
+    <div class="link-icons">
+      
+    </div>
   </div>
 </template>
 

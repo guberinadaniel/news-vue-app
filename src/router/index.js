@@ -39,7 +39,7 @@ export default new Router({
       },
     },
     {
-      path: '/lifestyles',
+      path: '/news',
       name: 'lifestyle',
       component: Lifestyles,
       meta: {
@@ -50,7 +50,7 @@ export default new Router({
       },
     },
     {
-      path: '/lifestyles/health',
+      path: '/news/health',
       name: 'Health',
       component: Health,
       meta: {

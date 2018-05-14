@@ -2,12 +2,16 @@
   <div class="container">
     <div class="layout-content">
       <div class="single-news content">
+        <div class="taxonomy-term">{{ single2[0].field_news_ct_taxonomy_terms }}</div>
+        <!--{{single2[0].field_news_ct_taxonomy_terms = "Health"}}-->
+        <!--{{single2[0].field_news_ct_taxonomy_terms = "Travel"}}-->
+        <!--{{single2[0].field_news_ct_taxonomy_terms = "Food"}}-->
         <h1>{{ single[0].title[0].value }}</h1>
         <div class="posted-by">{{ single2[0].uid}} <span class="crated-on">{{ single[0].created[0].value | toTime }}</span></div>
         <img :src=single[0].field_news_ct_image[0].url :alt=single[0].field_news_ct_image[0].alt>
         <p v-html=single[0].body[0].value></p>
         <div class="tags-rating">
-          <div class="tags"><span class="tags-span">Tags: </span><span class="tag-span">{{single2[0].field_news_ct_taxonomy_terms}}</span></div>
+          <div class="tags"><span class="tags-span">Tags: </span><span class="tag-span">{{single2[0].field_tagss}}</span></div>
           <div class="rating">
             <span class="rating-span">Rating: </span>
             <star-rating v-model="rating"
@@ -106,6 +110,17 @@
 </script>
 
 <style lang="scss">
+  .taxonomy-term{
+    display: inline-block;
+    font-size: 10px;
+    background-color: #007fef;
+    color: white;
+    padding: 0 8px;
+    text-transform: uppercase;
+    margin: 16px 0;
+    line-height: 20px;
+    font-family: Open Sans,sans-serif;
+  }
   .tags-rating{
     padding: 20px 0;
     .tags{
@@ -161,3 +176,4 @@
   }
 
 </style>
+

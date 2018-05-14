@@ -52,7 +52,6 @@
           .then(res => {
             this.news = res.data;
             this.loading = false;
-            console.log(res);
           });
       }
     },
