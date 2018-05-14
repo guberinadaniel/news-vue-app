@@ -23,11 +23,31 @@
                 </div>
               </div>
             </li>
-            <li class="sub-item menu-sub-item2">
-              <router-link :to="{ name: 'lifestyle'}">Travel</router-link>
+            <li class="sub-item menu-sub-item2"
+              v-on="{ mouseover: mouseActive3, mouseout: mouseActive3}"
+              v-bind:class="{ 'on2': active3, 'off2': !active3}">
+              <router-link :to="{ name: 'Travel'}">Travel</router-link>
+              <div class="images-menu-absolute">
+                <div class="images-menu" v-for="singleNews in news2">
+                  <router-link class="health-router" :to="{ name: 'singleNews', params: { id: singleNews.nid[0].value }}">
+                    <img :src=singleNews.field_news_ct_image[0].url :alt=singleNews.field_news_ct_image[0].alt>
+                    <h3>{{ singleNews.title[0].value }}</h3>
+                  </router-link>
+                </div>
+              </div>
             </li>
-            <li class="sub-item menu-sub-item3">
-              <router-link :to="{ name: 'lifestyle'}">Food</router-link>
+            <li class="sub-item menu-sub-item3"
+                v-on="{ mouseover: mouseActive4, mouseout: mouseActive4}"
+                v-bind:class="{ 'on2': active4, 'off2': !active4}">
+              <router-link :to="{ name: 'food'}">Food</router-link>
+              <div class="images-menu-absolute">
+                <div class="images-menu" v-for="singleNews in news3">
+                  <router-link class="health-router" :to="{ name: 'singleNews', params: { id: singleNews.nid[0].value }}">
+                    <img :src=singleNews.field_news_ct_image[0].url :alt=singleNews.field_news_ct_image[0].alt>
+                    <h3>{{ singleNews.title[0].value }}</h3>
+                  </router-link>
+                </div>
+              </div>
             </li>
 
           </ul>
@@ -66,15 +86,23 @@ export default {
   data: function () {
     return {
       endpointHealth: 'http://vuenews.dev.loc/api/news/health/?_format=json',
+      endpointTravel: 'http://vuenews.dev.loc/api/news/travel/?_format=json',
+      endpointFood: 'http://vuenews.dev.loc/api/news/food/?_format=json',
       available: false,
       search: '',
       active: false,
       active2: false,
-      news:[]
+      active3: false,
+      active4: false,
+      news:[],
+      news2:[],
+      news3:[]
     }
   },
   created() {
-    this.getNews();
+    this.getNewsHealth();
+    this.getNewsTravel();
+    this.getNewsFood();
   },
   computed: {
     changeStatus: function () {
@@ -90,10 +118,28 @@ export default {
     mouseActive2: function () {
       this.active2 = !this.active2;
     },
-    getNews() {
+    mouseActive3: function () {
+      this.active3 = !this.active3;
+    },
+    mouseActive4: function () {
+      this.active4 = !this.active4;
+    },
+    getNewsHealth() {
       axios.get(this.endpointHealth)
         .then(res => {
           this.news = res.data;
+        });
+    },
+    getNewsTravel() {
+      axios.get(this.endpointTravel)
+        .then(res => {
+          this.news2 = res.data;
+        });
+    },
+    getNewsFood() {
+      axios.get(this.endpointFood)
+        .then(res => {
+          this.news3 = res.data;
         });
     }
   },
@@ -109,44 +155,51 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  .on2{
-    position: relative;
-    z-index: 100;
-    .images-menu-absolute{
-      position: absolute;
-      z-index: 1000;
-      top: 20px;
-      right: 10px;
-      .images-menu{
-        display: inline-block;
-        margin-right: 0;
-        vertical-align: top;
-        .health-router{
-          padding: 0 ;
-          max-width: 200px;
-          margin: 0;
-          &:hover{
-            opacity: 0.6;
-            transition: 0.4s;
-            cursor: pointer;
-          }
-          img{
-            display: block;
-            max-height: 115px;
-            padding: 0;
-            width: 100%;
-          }
-          h3{
-            display: block;
-            line-height: 24px;
-            text-transform: capitalize;
+
+
+   .on2{
+      z-index: 100;
+      .images-menu-absolute{
+        position: absolute;
+        z-index: 1000;
+        top: 20px;
+        right: 20px;
+        .images-menu{
+          display: inline-block;
+          margin-right: 0;
+          vertical-align: top;
+          .health-router{
+            padding: 0 ;
+            max-width: 200px;
             margin: 0;
-            padding: 0;
+            &:hover{
+              opacity: 0.6;
+              transition: 0.4s;
+              cursor: pointer;
+            }
+            img{
+              display: block;
+              max-height: 115px;
+              padding: 0;
+              width: 100%;
+              max-width:200px;
+              min-width:200px;
+            }
+            h3{
+              display: block;
+              line-height: 24px;
+              text-transform: capitalize;
+              max-width:200px;
+              min-width:200px;
+              margin: 0;
+              padding: 0;
+            }
           }
         }
       }
     }
-  }
+
+
 
   .off2{
     .images-menu{

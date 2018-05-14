@@ -7,12 +7,13 @@ import Homepage from '@/components/Pages/Homepage/Homepage'
 import Features from '@/components/Pages/Features/Features'
 import Lifestyles from '@/components/Pages/Lifestyles/Lifestyles'
 import Technology from '@/components/Pages/Technology/Technology'
-import Travel from '@/components/Pages/Travel/Travel'
 import Video from '@/components/Pages/Video/Video'
 
 import News from '@/components/Pages/News'
 import NewsSinglePage from '@/components/Pages/NewsSinglePage'
 import Health from '@/components/Pages/Health/Health'
+import Travel from '@/components/Pages/Travel/Travel'
+import Food from '@/components/Pages/Food/Food'
 
 Vue.use(Router);
 Vue.use(Vue2Crumbs);
@@ -61,23 +62,34 @@ export default new Router({
       },
     },
     {
+      path: '/news/travel',
+      name: 'Travel',
+      component: Travel,
+      meta: {
+        breadcrumb: {
+          label: 'Travel',
+          parent: 'lifestyle'
+        }
+      },
+    },
+    {
+      path: '/news/food',
+      name: 'food',
+      component: Food,
+      meta: {
+        breadcrumb: {
+          label: 'Food',
+          parent: 'lifestyle'
+        }
+      },
+    },
+    {
       path: '/technology',
       name: 'technology',
       component: Technology,
       meta: {
         breadcrumb: {
           label: 'Technology',
-          parent: 'Homepage'
-        }
-      },
-    },
-    {
-      path: '/travel',
-      name: 'travel',
-      component: Travel,
-      meta: {
-        breadcrumb: {
-          label: 'Travel',
           parent: 'Homepage'
         }
       },

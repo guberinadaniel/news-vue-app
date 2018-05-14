@@ -30,7 +30,7 @@
   import JoinWithUs from '../../../components/SharedComponents/JoinWithUs'
 
   export default {
-    name: "Travel",
+    name: "food",
     components: {
       appJoinUs: JoinWithUs,
     },
@@ -38,7 +38,7 @@
       return {
         loading: true,
         news: [],
-        endpoint: 'http://vuenews.dev.loc/api/news/travel/?_format=json',
+        endpoint: 'http://vuenews.dev.loc/api/news/food/?_format=json',
         date: null
       }
     },
@@ -55,7 +55,8 @@
             this.news = res.data;
             this.loading = false;
           });
-      }
+      },
+
     },
     filters: {
       toTime(val) {
