@@ -3,7 +3,7 @@
     <div class="container">
       <div v-cloak class="layout-content">
         <div class="wraper-news-pages single-news" v-for="singleNews in news">
-          <router-link :to="{ name: 'singleNews', params: { id: singleNews.nid[0].value }}"><h1>{{ singleNews.title[0].value }}</h1></router-link>
+          <router-link :to="{ name: 'singleNews', params: { id: singleNews.nid[0].value,  title: singleNews.title[0].value }}"><h1>{{ singleNews.title[0].value }}</h1></router-link>
           <div class="posted-by">{{ singleNews.uid[0].url}} <span class="crated-on">{{ singleNews.created[0].value | toTime }}</span></div>
           <img :src=singleNews.field_news_ct_image[0].url :alt=singleNews.field_news_ct_image[0].alt>
           <p v-html="singleNews.body[0].value"></p>

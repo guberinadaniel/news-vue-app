@@ -117,7 +117,7 @@ export default new Router({
       },
     },
     {
-      path: '/news/:id',
+      path: '/news/:title',
       name: 'singleNews',
       component: NewsSinglePage,
       meta: {
