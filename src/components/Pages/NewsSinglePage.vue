@@ -41,7 +41,7 @@
   import JoinWithUs from '../../components/SharedComponents/JoinWithUs'
 
   export default {
-    props: ['id','title'],   //props from news
+    props: ['id'],
     components: {
       appJoinUs: JoinWithUs,
       StarRating

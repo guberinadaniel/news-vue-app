@@ -66,12 +66,12 @@
 
 <style lang="scss">
   .wraper-news-pages{
-  a{
-    text-decoration: none;
-    color: #333;
-  &:hover{
-     color: #007fef;
-   }
-  }
+    a{
+      text-decoration: none;
+      color: #333;
+      &:hover{
+        color: #007fef;
+      }
+    }
   }
 </style>

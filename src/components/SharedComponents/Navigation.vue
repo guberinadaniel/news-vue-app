@@ -85,9 +85,9 @@ export default {
   name: 'navigation',
   data: function () {
     return {
-      endpointHealth: 'http://vuenews.dev.loc/api/news/health/?_format=json',
-      endpointTravel: 'http://vuenews.dev.loc/api/news/travel/?_format=json',
-      endpointFood: 'http://vuenews.dev.loc/api/news/food/?_format=json',
+      endpointHealth: 'http://vuenews.dev.loc/api/news/health4/?_format=json',
+      endpointTravel: 'http://vuenews.dev.loc/api/news/travel4/?_format=json',
+      endpointFood: 'http://vuenews.dev.loc/api/news/food4/?_format=json',
       available: false,
       search: '',
       active: false,
