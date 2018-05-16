@@ -6,6 +6,7 @@
     <app-breadcrumbs class="container"></app-breadcrumbs>
     <router-view />
     <app-footer-top></app-footer-top>
+    <app-footer-middle></app-footer-middle>
     <app-footer-bottom></app-footer-bottom>
   </div>
 </template>
@@ -15,15 +16,17 @@
   import Navigation from './components/SharedComponents/Navigation';
   import HeaderLogo from './components/SharedComponents/HeaderLogo';
   import FooterTop from './components/SharedComponents/FooterTop';
+  import FooterMiddle from './components/SharedComponents/FooterMiddle';
   import FooterBottom from './components/SharedComponents/FooterBottom';
 
-export default  {         //name: 'App'
+export default  {
   name: 'App',
   components: {
     appDate: DateLogin,
     appNav: Navigation,
     appHeadLogo: HeaderLogo,
     appFooterTop: FooterTop,
+    appFooterMiddle: FooterMiddle,
     appFooterBottom: FooterBottom
   }
 

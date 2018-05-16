@@ -2,7 +2,7 @@
   <div class="container">
     <div class="container">
       <div v-cloak class="layout-content">
-        <h1 class="health">Health</h1>
+        <h1 class="health">Health <span class="pages-counter">({{pagesCounter}} items)</span></h1>
         <div class="wraper-news-pages single-news" v-for="singleNews in news">
           <router-link :to="{ name: 'singleNews', params: { id: singleNews.nid[0].value,  title: singleNews.title[0].value }}">
           <div class="summary-health">
@@ -45,7 +45,8 @@
           news: [],
           endpoint: 'http://vuenews.dev.loc/api/news/health/?_format=json',
           date: null,
-          bodyTextTrimed:''
+          bodyTextTrimed:'',
+          pagesCounter:'',
         }
       },
       created() {
@@ -60,6 +61,7 @@
             .then(res => {
               this.news = res.data;
               this.bodyTextTrimed = res.data[0].body[0].value.substr(0, 150) + '...';
+              this.pagesCounter = res.data.length;
             });
         },
       },
@@ -101,6 +103,10 @@
       border-width: 6px;
       border-style: solid;
       border-color: #1c1c1c transparent transparent transparent;
+    }
+    .pages-counter{
+      font-size: 20px;
+      color: gray;
     }
   }
   .summary-health{

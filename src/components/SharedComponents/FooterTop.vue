@@ -105,7 +105,7 @@
       vertical-align: top;
       display: inline-block;
       width: calc((100% / 4) + 120px);
-      text-align: right;
+      text-align: left;
       .phone-number{
         display: inline-block;
         margin-left: -4px;

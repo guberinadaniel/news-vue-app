@@ -23,6 +23,7 @@
               <li class="menu-item">
                 <a href="/contact">Contact Us</a>
               </li>
+              <!--<button class="white-button" v-on:click="animateTop">To top</button>-->
             </ul>
           </nav>
         </div>
@@ -33,11 +34,25 @@
 
 <script>
     export default {
-        name: "footer-bottom"
+        name: "footer-bottom",
+      data() {
+        return {
+          animateTop: false
+        }
+      },
+      computed:{
+        animateTop:function() {
+          return document.getElementsByTagName("body").animate({scrollTop: 0}, 600)
+        }
+      },
     }
+
 </script>
 
 <style lang="scss">
+  .white-button{
+
+  }
   .footer-bottom{
     font-size: 13px;
     padding: 20px 0;
