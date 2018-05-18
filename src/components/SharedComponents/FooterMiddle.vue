@@ -63,6 +63,9 @@
         <p>Internet <span class="tag-counter">{{internetPagesCounter}}</span></p>
         <p>Health <span class="tag-counter">{{healthtagPagesCounter}}</span></p>
         <p>Security <span class="tag-counter">{{securityPagesCounter}}</span></p>
+        <p>Status <span class="tag-counter">{{statusPagesCounter}}</span></p>
+        <p>Tech <span class="tag-counter">{{techPagesCounter}}</span></p>
+        <p>Travel <span class="tag-counter">{{travelPagesCounter}}</span></p>
       </div>
     </div>
   </div>
@@ -94,9 +97,9 @@
         endTagLifestyle:'',
         endTagNews:'http://vuenews.dev.loc/api/tags/news/?_format=json',
         endTagSecurity:'http://vuenews.dev.loc/api/tags/security/?_format=json',
-        endTagStatus:'',
-        endTagTech:'',
-        endTagTravel:'',
+        endTagStatus:'http://vuenews.dev.loc/api/tags/status/?_format=json',
+        endTagTech:'http://vuenews.dev.loc/api/tags/tech/?_format=json',
+        endTagTravel:'http://vuenews.dev.loc/api/tags/travel/?_format=json',
         endTagVideo:'',
 
         date: null,
@@ -113,6 +116,8 @@
         foodtagPagesCounter: 0,
         internetPagesCounter: 0,
         securityPagesCounter: 0,
+        statusPagesCounter: 0,
+        techPagesCounter: 0,
       }
     },
     created() {
@@ -129,6 +134,9 @@
       this.getNewsTagFood();
       this.getNewsTagInternet();
       this.getNewsSecurity();
+      this.getNewsStatus();
+      this.getNewsTech();
+
     },
     methods: {
       getNews() {
@@ -208,6 +216,18 @@
         axios.get(this.endTagSecurity)
           .then(res => {
             this.securityPagesCounter = res.data.length;
+          });
+      },
+      getNewsStatus() {
+        axios.get(this.endTagStatus)
+          .then(res => {
+            this.statusPagesCounter = res.data.length;
+          });
+      },
+      getNewsTech() {
+        axios.get(this.endTagTech)
+          .then(res => {
+            this.techPagesCounter = res.data.length;
           });
       },
     },
